@@ -1,57 +1,69 @@
 import { makeAutoObservable } from "mobx";
-import { ITask } from "../model/task.model";
-
+import { ICreateTask, ITask, ITaskBody } from "../model/task.model";
+import { ETaskFilter } from "../data/task.data";
+import { fakeApi } from "../api/task.fake.api";
 
 class TaskStore {
 	tasks: ITask[] = [];
-	filter: "all" | "completed" | "uncompleted" = "all";
+	filter: ETaskFilter = ETaskFilter.All;
 
 	constructor() {
 		makeAutoObservable(this);
+		this.loadTasks(); // Загружаем задачи при инициализации
 	}
 
-	addTask(title: string, description: string) {
+	// Загрузить задачи из localStorage
+	loadTasks() {
+		this.tasks = fakeApi.getTasks();
+	}
+
+	// Добавить новую задачу
+	addTask({title, description}: ICreateTask) {
 		const newTask: ITask = {
 			id: Date.now(),
 			title,
 			description,
 			completed: false,
 		};
+		// this.tasks = fakeApi.addTask(newTask);
 		this.tasks.push(newTask);
+        fakeApi.addTask(newTask);
+		return newTask;
 	}
 
-	toggleTaskCompletion(id: number) {
+	// Переключить выполнение задачи
+	toggleTaskCompletion(id: number, checked?: boolean) {
 		const task = this.tasks.find((task) => task.id === id);
 		if (task) {
-			task.completed = !task.completed;
+			this.tasks = fakeApi.updateTask(id, { completed: checked ?? !task.completed });
 		}
 	}
 
+	// Удалить задачу
 	deleteTask(id: number) {
-		this.tasks = this.tasks.filter((task) => task.id !== id);
+		this.tasks = fakeApi.deleteTask(id);
 	}
 
-	updateTask(id: number, title: string, description: string) {
-		const task = this.tasks.find((task) => task.id === id);
-		if (task) {
-			task.title = title;
-			task.description = description;
-		}
+	// Обновить задачу
+	updateTask(id: number, body: ITaskBody) {
+		this.tasks = fakeApi.updateTask(id, body);
 	}
 
-	setFilter(filter: "all" | "completed" | "uncompleted") {
+	// Установить фильтр
+	setFilter(filter: ETaskFilter) {
 		this.filter = filter;
 	}
 
+	// Фильтр задач
 	get filteredTasks() {
-		switch (this.filter) {
-			case "completed":
+	switch (this.filter) {
+		case ETaskFilter.Completed:
 			return this.tasks.filter((task) => task.completed);
-			case "uncompleted":
+		case ETaskFilter.Uncompleted:
 			return this.tasks.filter((task) => !task.completed);
-			default:
+		default:
 			return this.tasks;
-		}
+	}
 	}
 }
 

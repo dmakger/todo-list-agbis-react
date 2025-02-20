@@ -4,65 +4,179 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // ===={ COLORS }====
+  // BASE
+  --black: #000000;
+  --white: #FFFFFF;
+  --empty: #FFFFFF00;
+
+  --gray-1: #1C1C1C;
+  --gray-2: #232323;
+  --gray-3: #2E2E2E;
+  --gray-4: #4F4F4F;
+  --gray-5: #ABABAB;
+
+  --green-1: #00F2A6;
+  --green-2: #9CFFE0;
+  --green-3: #00FF7F;
+  --green-4: #1B936E;
+  --green-light-1: #B3FCE5;
+
+  --red-1: #CA2B3E;
+  --red-2: #A12232;
+  --red-3: #761925;
+  --red-light-1: #FBEAEC;
+
+  // SPECIFY
+  --disabled: var(--gray-5);
+
+  --background-1: var(--gray-1);
+  --background-2: var(--gray-2);
+  --background-3: var(--gray-3);
+
+  --foreground-1: var(--white);
+  --foreground-2: var(--gray-5);
+  --foreground-3: var(--gray-4);
+
+  --primary: var(--green-1);
+  --primary-border: var(--green-2);
+  --primary-hovered: var(--green-3);
+  --primary-pressed: var(--green-4);
+  --on-primary: var(--foreground-1);
+  --primary-surface: var(--green-light-1);
+  --primary-surface-sub: var(--green-light-1);
+
+  --negative: var(--red-2);
+  --negative-border: var(--red-1);
+  --negative-hovered: var(--red-2);
+  --negative-pressed: var(--red-3);
+  --on-negative: var(--foreground-1);
+  --negative-surface: var(--red-light-1);
+  --negative-surface-sub: var(--red-light-1);
+
+
+  // USE
+  background-color: var(--background-1);
+  color: var(--foreground-1);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  /* Стили для Firefox */
+  scrollbar-width: thin; /* "auto" или "thin" */
+  scrollbar-color: var(--gray-5) transparent; /* Цвет ползунка и трека */
+  
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--gray-5);
+    border-radius: 4px;
+  }
 }
-a:hover {
-  color: #535bf2;
+
+#root {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+
+  /* Стили скроллбара для Firefox */
+  scrollbar-width: thin; /* "auto" или "thin" */
+  scrollbar-color: var(--gray-1) transparent; /* Цвет ползунка и трека */
+
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--gray-1);
+    border-radius: 4px;
+  }
+
+  &::selection {
+    background: var(--green-1);
+    color: var(--background-2);
+  }
+}
+
+html {
+  font-size: 16px; /* Базовый размер по умолчанию */
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* Уменьшаем базовый rem */
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  height: 100vh;
+  // overflow-x: hidden;
+  font-weight: var(--fw-regular);
+  font-family: var(--font-family);
+  
+  input, textarea {
+    color: var(--foreground-1);
+    font-family: inherit;
+    font-weight: var(--fw-semi-bold);
+
+    &::placeholder {
+      color: var(--foreground-4);
+    }
+  }
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--background-1);
+  color: var(--foreground-1);
+  font-size: var(--fs-srg);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-family: inherit;
+  color: var(--foreground-1);
+  transition: 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+h1,h2,h3,h4,h5,h6, span, p{
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
   }
 }

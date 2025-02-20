@@ -1,0 +1,57 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none; // Запрещаем выделение текста
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    // color: #333;
+  
+    .checkbox {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+
+		&:checked ~ .checkmark {
+			background-color: var(--primary);
+			border-color: var(--primary);
+
+			&::after {
+				display: block;
+			}
+		}
+    }
+  
+    .checkmark {
+		position: relative;
+		height: 20px;
+		width: 20px;
+		background-color: var(--background-1);
+		border: 2px solid var(--gray-5);
+		border-radius: 4px;
+		transition: background-color 0.3s, border-color 0.3s;
+
+		&::after {
+			content: "";
+			position: absolute;
+			display: none;
+			left: 5px;
+			top: 1px;
+			width: 5px;
+			height: 10px;
+			border: solid white;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+    }
+  
+    .title {
+		margin-left: 8px;
+    }
+  
+    &:hover .checkbox ~ .checkmark {
+		border-color: var(--primary);
+    }
+  }

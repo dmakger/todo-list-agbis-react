@@ -1,0 +1,28 @@
+.task {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: var(--background-1);
+    width: 100%;
+    transition: .2s;
+
+    &:hover {
+        background-color: var(--background-2);
+
+        .delete {
+            opacity: 1;
+        }
+    }
+
+    .title {
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .delete {
+        opacity: 0;
+        padding: 10px !important;
+    }
+}
