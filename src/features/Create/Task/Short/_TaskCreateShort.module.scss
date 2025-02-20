@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background-color: var(--background-2);
+    padding-right: 5px;
+    border-radius: 10px;
+
+    .button {
+        // width: 47px;
+        padding: 5px;
+    }
+}

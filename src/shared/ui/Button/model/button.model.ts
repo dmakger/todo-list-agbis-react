@@ -1,7 +1,8 @@
 import { RefObject, ReactNode } from "react"
 
+import { ButtonVariant, ButtonColor, ButtonSize } from "../data/button.data"
 import { IIcon, IIconProps } from "@/shared/model/icon.model"
-import { ButtonVariant, ButtonColor, ButtonType, ButtonSize } from "../data/button.data"
+import { TFunc } from "@/shared/model/function.model"
 
 
 export type IButtonWORef = Omit<IButton, 'ref'>
@@ -10,7 +11,7 @@ export type IButtonWORef = Omit<IButton, 'ref'>
 export interface IButton {
     variant?: ButtonVariant
     color?: ButtonColor
-    type?: ButtonType
+    type?: 'button' | 'submit'
     size?: ButtonSize
     isRounded?: boolean
 
@@ -31,9 +32,9 @@ export interface IButton {
     loading?: boolean
     noTranslation?: boolean
 
-    onClick?: Function
-    onMouseEnter?: Function
-    onMouseLeave?: Function
+    onClick?: TFunc
+    onMouseEnter?: TFunc
+    onMouseLeave?: TFunc
 
     children?: ReactNode
     className?: string

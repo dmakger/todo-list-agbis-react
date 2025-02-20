@@ -1,0 +1,19 @@
+.item {
+    width: 100%;
+	outline: none;
+	font-size: var(--font-size-reg);
+    background-color: var(--background-2);
+    padding: 10px 0 12px 15px;
+    border-radius: 10px;
+    border: 2px solid var(--background-2);
+    transition: .3s;
+
+    &::placeholder {
+		// font-size: var(--font-size-reg);
+        color: var(--foreground-2);
+	}
+
+    &:hover {
+        border-color: var(--primary);
+    }
+}

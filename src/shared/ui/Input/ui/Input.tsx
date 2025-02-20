@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-// import { InputText } from "./ui/Text"
+import { InputText } from "./Text"
 import { InputCheckbox } from "./Checkbox"
 
 interface InputProps {
@@ -12,6 +12,6 @@ export default function Input({children}: InputProps) {
     )
 }
 
-// Input.Text = InputText
+Input.Text = InputText
 Input.Checkbox = InputCheckbox
 

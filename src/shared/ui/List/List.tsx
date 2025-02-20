@@ -25,7 +25,7 @@ export const List = <T extends any>({
     activeId,
     activeIndex,
     gap,
-    onClickItem = () => {},
+    onClickItem,
     onClickDelete,
     generateKey,
     style,
@@ -46,7 +46,6 @@ export const List = <T extends any>({
         ...componentProps,
         className: cls(componentProps?.className, classNameItem)
     };
-
     
     return (
         <div ref={listRef} 
@@ -71,7 +70,7 @@ export const List = <T extends any>({
                             {...updatedComponentProps}
                             item={it}
                             style={style}
-                            onClick={() => onClickItem(it, index)}
+                            onClick={() => onClickItem?.(it, index)}
                             onClickDelete={onClickDelete ? () => onClickDelete(it, index) : undefined}
                             activeId={activeId}
                             isActive={activeIndex === index || !!(it && typeof it === 'object' && 'id' in it && it.id && activeId === it.id)}

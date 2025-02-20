@@ -15,15 +15,13 @@ interface TaskProps extends IListItem<ITask>{
 }
 
 export const Task:FC<TaskProps> = ({
-    canOpen=false,
-
     item,
     onClick,
     className,
 }) => {
     // HANDLE
     const handleOnClickTask = () => {
-        onClick?.(item.id)
+        onClick?.(item)
     }
     const handleOnChecked = (checked: boolean) => {
         taskStore.toggleTaskCompletion(item.id, checked)
@@ -32,8 +30,8 @@ export const Task:FC<TaskProps> = ({
         taskStore.deleteTask(item.id)
     }
 
-    const html = (
-        <div className={cls(cl.task, className)}>
+    return (
+        <div onClick={handleOnClickTask} className={cls(cl.task, className)}>
             <Input.Checkbox onChange={handleOnChecked} />
             <span className={cl.title}>{item.title}</span>
             <Button
@@ -45,11 +43,4 @@ export const Task:FC<TaskProps> = ({
                 className={cl.delete} />
         </div>
     )
-
-    if (canOpen) {
-        return (
-            <button onClick={handleOnClickTask}>{html}</button>
-        )
-    }
-    return html;
 }

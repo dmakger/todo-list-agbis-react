@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 
 import cl from './_Button.module.scss'
 
-import { ButtonColor, ButtonType, ButtonSize, ButtonImageSize, ButtonVariant } from '../data/button.data'
+import { ButtonColor, ButtonSize, ButtonImageSize, ButtonVariant } from '../data/button.data'
 import { cls } from '@/shared/lib/classes.lib'
 import { getImageSizeBySize } from '../lib/button.lib'
 import { ImageSmart } from '../../Image/ui/Smart/ImageSmart'
@@ -13,7 +13,8 @@ import { IButton } from '../model/button.model'
 interface IButtonProps extends IButton {}
 
 export const Button = ({
-    variant = ButtonVariant.Fill, color=ButtonColor.Primary, type = ButtonType.Button, size=ButtonSize.DefaultSize, 
+    variant = ButtonVariant.Fill, color=ButtonColor.Primary, size=ButtonSize.DefaultSize, 
+    type = 'button',
     isRounded=true,
     ref,
     title, href,
@@ -104,6 +105,5 @@ export const Button = ({
 }
 
 Button.Variant = ButtonVariant;
-Button.Type = ButtonType;
 Button.Color = ButtonColor;
 Button.Size = ButtonSize;

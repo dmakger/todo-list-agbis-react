@@ -64,6 +64,33 @@
   // USE
   background-color: var(--background-1);
   color: var(--foreground-1);
+
+
+  //FONT-SIZE
+  // 12px
+  --fs-xs: 0.75rem;
+  // 15px
+  --fs-sm: 0.94rem;
+  // 16px
+  --fs-srg: 1rem;
+  // 20px
+  --fs-rg: 1.25rem;
+  // 24px
+  --fs-lrg: 1.5rem;
+  // 32px
+  --fs-lg: 2rem;
+  // 40px
+  --fs-mlg: 2.5rem;
+  // 48px
+  --fs-elg: 3rem;
+
+  //FONT-WEIGHT
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+  --fw-black: 900;
 }
 
 * {
@@ -143,7 +170,8 @@ body {
     font-weight: var(--fw-semi-bold);
 
     &::placeholder {
-      color: var(--foreground-4);
+      font-weight: inherit;
+      color: var(--foreground-2);
     }
   }
 }
