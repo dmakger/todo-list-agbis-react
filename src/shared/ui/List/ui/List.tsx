@@ -46,6 +46,8 @@ export const List = <T extends any>({
         ...componentProps,
         className: cls(componentProps?.className, classNameItem)
     };
+
+    // console.log('ListItemComponentBetween', !!ListItemComponentBetween, ListItemComponentBetween)
     
     return (
         <div ref={listRef} 
@@ -63,25 +65,24 @@ export const List = <T extends any>({
                         </React.Fragment>
                     ))}
                 </>
-            ) : (
-                items.map((it, index) => (
-                    <React.Fragment key={generateKey ? generateKey(it, index) : (it && typeof it === 'object' && 'id' in it ? it.id as number : index)}>
-                        <ListItemComponent
-                            {...updatedComponentProps}
-                            item={it}
-                            style={style}
-                            onClick={() => onClickItem?.(it, index)}
-                            onClickDelete={onClickDelete ? () => onClickDelete(it, index) : undefined}
-                            activeId={activeId}
-                            isActive={activeIndex === index || !!(it && typeof it === 'object' && 'id' in it && it.id && activeId === it.id)}
-                        />
-                        {(ListItemComponentBetween && index + 1 !== items.length) && (
-                            <>{ListItemComponentBetween}</>
-                        )}
-                        {ListItemComponentAfter}
-                    </React.Fragment>
-                ))
-            )}
+            ) : (items.map((it, index) => (
+                <React.Fragment key={generateKey ? generateKey(it, index) : (it && typeof it === 'object' && 'id' in it ? it.id as number : index)}>
+                    <ListItemComponent
+                        {...updatedComponentProps}
+                        item={it}
+                        style={style}
+                        onClick={() => onClickItem?.(it, index)}
+                        onClickDelete={onClickDelete ? () => onClickDelete(it, index) : undefined}
+                        activeId={activeId}
+                        isActive={activeIndex === index || !!(it && typeof it === 'object' && 'id' in it && it.id && activeId === it.id)}
+                    />
+                    {(ListItemComponentBetween && index + 1 !== items.length) && (
+                        // <>{ListItemComponentBetween}</>
+                        <p>ZZZZZZ</p>
+                    )}
+                    <>{ListItemComponentAfter}</>
+                </React.Fragment>
+            )))}
         </div>
     );
 }

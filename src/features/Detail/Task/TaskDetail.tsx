@@ -1,6 +1,9 @@
 import { observer } from "mobx-react-lite";
-import { taskStore } from "@/entities/Task/store/task.store";
 import { ChangeEvent } from "react";
+
+import { taskStore } from "@/entities/Task/store/task.store";
+import cl from './_TaskDetail.module.scss'
+
 
 export const TaskDetail = observer(() => {
 	const task = taskStore.selectedTask;
@@ -19,7 +22,7 @@ export const TaskDetail = observer(() => {
 	};
 
 	return (
-		<div style={{ position: "fixed", right: 0, top: 0, width: "300px", padding: "20px", borderLeft: "1px solid gray", background: "white" }}>
+		<div className={cl.wrapper}>
 			<h3>Детали задачи</h3>
 			<input type="text" value={task.title} onChange={handleTitleChange} style={{ width: "100%", marginBottom: "10px" }} />
 			<textarea value={task.description || ""} onChange={handleDescriptionChange} style={{ width: "100%", height: "100px", marginBottom: "10px" }} />

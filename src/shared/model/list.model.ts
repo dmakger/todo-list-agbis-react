@@ -11,6 +11,8 @@ export interface IListBase<T> extends TAnyParams {
     isLoading?: boolean
     loadingProps?: IListLoadingProps
     componentLoading?: React.FC<TAnyParams>;
+    componentBetween?: React.FC<TAnyParams>;
+    componentAfter?: React.FC<TAnyParams>;
 
     items?: T[];
     direction?: ListDirection;

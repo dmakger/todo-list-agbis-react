@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-1);
+    
+    .page {
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .sidebar {
+        border-left: 3px solid var(--background-3);
+        max-width: 500px;
+        width: 100%;
+    }
+}
