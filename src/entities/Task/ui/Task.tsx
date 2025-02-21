@@ -17,6 +17,7 @@ interface TaskProps extends IListItem<ITask>{
 export const Task:FC<TaskProps> = ({
     item,
     onClick,
+    onClickDelete,
     className,
 }) => {
     // HANDLE
@@ -26,8 +27,10 @@ export const Task:FC<TaskProps> = ({
     const handleOnChecked = (checked: boolean) => {
         taskStore.toggleTaskCompletion(item.id, checked)
     }
-    const handleOnDelete = () => {
-        taskStore.deleteTask(item.id)
+    const handleOnDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        onClickDelete?.(item)
+        taskStore.deleteTask(item.id);
     }
 
     return (

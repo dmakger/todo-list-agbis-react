@@ -10,8 +10,6 @@ interface ListComponentBetweenLineProps{
 export const ListComponentBetweenLine:FC<ListComponentBetweenLineProps> = ({className}) => {
     
     return (
-        <div className={cls(cl.line, className)}>
-            GOOOL
-        </div>
+        <div className={cls(cl.line, className)} />
     )
 }

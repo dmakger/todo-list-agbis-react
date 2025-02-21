@@ -38,6 +38,7 @@ export interface IListBaseOnlyItem<T> {
     componentProps?: TAnyParams;
     onClickItem?: TListItemOnClick<T>
     onClickDelete?: TListItemOnClick<T>
+    onClickDeleteEvent?: TListItemOnClickEvent
     classNameItem?: string;
 }
 
@@ -75,6 +76,8 @@ export interface IListItem<T> extends TAnyParams {
  * Функция нажатия на `ListItem`
  */
 export type TListItemOnClick<T> = (it: T, index?: number) => void
+
+export type TListItemOnClickEvent = (event: React.MouseEvent<HTMLButtonElement>) => void
 
 
 /**

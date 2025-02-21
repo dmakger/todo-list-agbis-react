@@ -27,6 +27,7 @@ export const List = <T extends any>({
     gap,
     onClickItem,
     onClickDelete,
+    onClickDeleteEvent,
     generateKey,
     style,
     className,
@@ -47,7 +48,17 @@ export const List = <T extends any>({
         className: cls(componentProps?.className, classNameItem)
     };
 
-    // console.log('ListItemComponentBetween', !!ListItemComponentBetween, ListItemComponentBetween)
+    // HANDLE
+    const handleOnClickDelete = (e: React.MouseEvent<HTMLButtonElement>, it: T, index: number) => {
+        if (onClickDelete) {
+            onClickDelete(it, index)
+        }
+        if (onClickDeleteEvent) {
+            onClickDeleteEvent(e)
+        }
+    }
+
+    // console.log('ListItemComponentBetween', !!ListItemComponentBetween, ListItemComponentBetween, items.length)
     
     return (
         <div ref={listRef} 
@@ -72,15 +83,17 @@ export const List = <T extends any>({
                         item={it}
                         style={style}
                         onClick={() => onClickItem?.(it, index)}
-                        onClickDelete={onClickDelete ? () => onClickDelete(it, index) : undefined}
+                        onClickDelete={e => handleOnClickDelete(e, it, index)}
                         activeId={activeId}
                         isActive={activeIndex === index || !!(it && typeof it === 'object' && 'id' in it && it.id && activeId === it.id)}
                     />
                     {(ListItemComponentBetween && index + 1 !== items.length) && (
-                        // <>{ListItemComponentBetween}</>
-                        <p>ZZZZZZ</p>
+                        <ListItemComponentBetween />
+                        // <p>ZZZZZZ</p>
                     )}
-                    <>{ListItemComponentAfter}</>
+                    {ListItemComponentAfter && (
+                        <ListItemComponentAfter />
+                    )}
                 </React.Fragment>
             )))}
         </div>

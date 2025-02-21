@@ -23,10 +23,13 @@ export const TaskCreateShort:FC<TaskCreateShortProps> = observer(({className}) =
     // HANDLE
     const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (!formRef.current) return
+        if (!formRef.current) return;
+        
         const { titleTask } = getFormDataFromForm(formRef.current)
+        if (!titleTask) return;
 
         taskStore.addTask({ title: titleTask })
+        formRef.current.reset()
     }
 
     return (
@@ -38,7 +41,6 @@ export const TaskCreateShort:FC<TaskCreateShortProps> = observer(({className}) =
                 color={ButtonColor.Negative}
                 type="submit"
                 beforeImage={PLUS_WHITE}
-                // title="+"
                 className={cl.button}
             />
         </form>

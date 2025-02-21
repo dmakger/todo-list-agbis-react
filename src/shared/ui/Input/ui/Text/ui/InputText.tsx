@@ -6,15 +6,14 @@ import cl from './_InputText.module.scss';
 import { IInput } from '@/shared/ui/Input/model/input.model';
 import { TFunc } from '@/shared/model/function.model';
 
-
 interface InputTextProps extends IInput {
-    defaultValue?: string | number,
-    value?: string
-    setValue?: TFunc
+    defaultValue?: string | number;
+    value?: string;
+    setValue?: TFunc;
 
-    variant?: 'text' | 'textarea'
-    maxLength?: number,
-    rows?: number
+    variant?: 'text' | 'textarea';
+    maxLength?: number;
+    rows?: number;
 }
 
 export function InputText({
@@ -35,42 +34,48 @@ export function InputText({
     onChange,
     onChangeEvent,
     className,
-    ...rest 
+    ...rest
 }: InputTextProps) {
 
-    //STATE
-    const [localValue, setLocalValue] = useState<string | number>('');
+    // STATE
+    const [localValue, setLocalValue] = useState<string | number>(defaultValue ?? '');
 
-    //EFFECT
+    // EFFECT
     useEffect(() => {
-        if (defaultValue) {
-            setLocalValue(defaultValue);
-        }
-    }, [defaultValue]);
-
-    useEffect(() => {
-        if (value) {
+        if (value !== undefined) {
             setLocalValue(value);
         }
     }, [value]);
 
+    useEffect(() => {
+        const inputElement = document.querySelector<HTMLInputElement>(`form input[name="${name}"]`);
+        const form = inputElement?.form;
+        if (!form) return;
+
+        const handleReset = () => {
+            setLocalValue(prev => typeof prev === "number" ? 0 : '');
+        };
+
+        form.addEventListener("reset", handleReset);
+        return () => form.removeEventListener("reset", handleReset);
+    }, [name]);
+
     // HANDLE
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const value = e.target.value;
-        setLocalValue(value);
-        setValue?.(value);
-        onChange?.(value);
-        onChangeEvent?.(e)
-    }
-
+        const newValue = e.target.value;
+        setLocalValue(newValue);
+        setValue?.(newValue);
+        onChange?.(newValue);
+        onChangeEvent?.(e);
+    };
 
     return (
         <>
             {variant === 'text' ? (
                 <input
                     name={name}
-                    type={'text'}
-                    value={localValue ?? ''}
+                    type="text"
+                    value={localValue}
                     required={required}
                     placeholder={placeholder}
                     onChange={handleOnChange}
@@ -82,7 +87,7 @@ export function InputText({
             ) : (
                 <textarea
                     name={name}
-                    value={localValue ?? ''}
+                    value={localValue}
                     placeholder={placeholder}
                     required={required}
                     disabled={disabled}
@@ -93,5 +98,5 @@ export function InputText({
                 />
             )}
         </>
-    )
+    );
 }
