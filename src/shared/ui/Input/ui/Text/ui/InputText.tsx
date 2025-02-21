@@ -43,7 +43,7 @@ export function InputText({
     // EFFECT
     useEffect(() => {
         if (value !== undefined) {
-            setLocalValue(value);
+            setLocalValue(value ?? '');
         }
     }, [value]);
 

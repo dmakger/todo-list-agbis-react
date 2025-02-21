@@ -1,43 +1,46 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react";
 
 import cl from './_InputCheckbox.module.scss';
-// import { IListItem } from "@/shared/model/list.model";
 
-interface InputCheckboxProps{
+interface InputCheckboxProps {
     title?: string;
     checked?: boolean;
-    onChange?: (checked: boolean) => void;
+    onClick?: (event: React.MouseEvent<HTMLLabelElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
-export const InputCheckbox:FC<InputCheckboxProps> = ({
+export const InputCheckbox: FC<InputCheckboxProps> = ({
     title,
-    checked,
+    checked = false,
+    onClick,
     onChange,
 }) => {
     // STATE
-    const [isChecked, setIsChecked] = useState(checked)
+    const [isChecked, setIsChecked] = useState(checked);
+
+    // EFFECT
+    useEffect(() => {
+        setIsChecked(checked);
+    }, [checked]);
 
     // HANDLE
-    const handleChange = () => {
-        setIsChecked(prev => {
-            onChange?.(!prev)
-            return !prev
-        });
-        
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.stopPropagation();
+        const newChecked = !isChecked;
+        setIsChecked(newChecked);
+        onChange?.(e, newChecked);
     };
 
     return (
-        <label className={cl.wrapper}>
+        <label onClick={e => onClick?.(e)} className={cl.wrapper}>
             <input
                 type="checkbox"
                 checked={isChecked}
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
                 className={cl.checkbox}
             />
             <span className={cl.checkmark} />
-            {title && (
-                <span className={cl.title}>{title}</span>
-            )}
+            {title && <span className={cl.title}>{title}</span>}
         </label>
     );
-}
+};

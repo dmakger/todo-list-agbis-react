@@ -1,8 +1,6 @@
 .task {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 5px 10px;
     border-radius: 10px;
     background-color: var(--background-1);
     width: 100%;
@@ -16,14 +14,21 @@
             opacity: 1;
         }
     }
-
-    .title {
+    .body {
+        display: flex;
+        gap: 20px;
         width: 100%;
-        cursor: pointer;
+        padding: 5px 10px;
+
+        .title {
+            width: 100%;
+            cursor: pointer;
+        }
     }
 
     .delete {
         opacity: 0;
-        padding: 10px !important;
+        padding: 15px !important;
+        border-radius: 0 10px 10px 0 !important;
     }
 }

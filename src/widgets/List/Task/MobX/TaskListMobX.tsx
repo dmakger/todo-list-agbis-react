@@ -8,7 +8,7 @@ import { ITask } from "@/entities/Task/model/task.model";
 export const TaskListMobX = observer(() => {
     // HANDLE
     const handleOnClickTask = (it: ITask) => {
-        taskStore.setSelectedTask(it)
+        taskStore.setSelectedTask(it.id)
     }
     
     return (

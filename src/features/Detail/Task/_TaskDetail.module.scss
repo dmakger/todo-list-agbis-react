@@ -1,4 +1,45 @@
 .wrapper {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     height: 100%;
+
+    .header {
+        display: flex;
+        gap: 20px;
+        border-bottom: 2px solid var(--background-3);
+        padding: 10px 10px 10px 20px;
+
+        .line {
+            background-color: var(--background-3);
+        }
+
+        .headerTitle {
+            width: 100%;
+        }
+
+        .right {
+            display: flex;
+            gap: 5px;
+            margin-left: auto;
+
+            .headerClose {
+                padding: 10px;
+            }
+        }
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+        padding: 20px;
+
+        .title {
+
+        }
+        .description {
+            height: 100%;
+        }
+    }
 }

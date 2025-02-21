@@ -89,7 +89,6 @@ export const List = <T extends any>({
                     />
                     {(ListItemComponentBetween && index + 1 !== items.length) && (
                         <ListItemComponentBetween />
-                        // <p>ZZZZZZ</p>
                     )}
                     {ListItemComponentAfter && (
                         <ListItemComponentAfter />

@@ -5,11 +5,9 @@ import { ITask } from "@/entities/Task/model/task.model";
 import { List } from "@/shared/ui/List/ui/List";
 import { Task } from "@/entities/Task/ui/Task";
 import { ListDirection } from "@/shared/data/list.data";
-import { ListComponentBetweenLine } from "@/shared/ui/List/components/Between/Line/ListComponentBetweenLine";
+import { Line } from "@/shared/ui/Line/Line";
 
-interface TaskListProps extends IListTop<ITask>{
-    // componentProps?: IProductRequest
-}
+interface TaskListProps extends IListTop<ITask>{}
 
 export const TaskList:FC<TaskListProps> = ({
     direction,
@@ -19,8 +17,7 @@ export const TaskList:FC<TaskListProps> = ({
     return (
         <List {...rest}  
             component={Task} 
-            // componentLoading={TaskSkeleton}
-            componentBetween={ListComponentBetweenLine}
+            componentBetween={Line}
             loadingProps={{ length: 10 }} 
             direction={direction ?? ListDirection.Column}
             gap={gap ?? 0}

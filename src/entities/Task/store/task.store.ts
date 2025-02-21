@@ -6,7 +6,7 @@ import { fakeApi } from "../api/task.fake.api";
 class TaskStore {
 	tasks: ITask[] = [];
 	filter: ETaskFilter = ETaskFilter.All;
-	selectedTask: ITask | null = null; // 🆕 Выбранная задача
+	selectedTask: ITask | null = null;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -34,25 +34,32 @@ class TaskStore {
 
 	deleteTask(id: number) {
 		this.tasks = fakeApi.deleteTask(id);
+		if (this.selectedTask?.id === id) {
+			this.setSelectedTask(null)
+		}
 	}
 
 	updateTask(id: number, body: Partial<ITaskBody>) {
-		const updatedTasks = fakeApi.updateTask(id, body);
 		runInAction(() => {
+			const updatedTasks = fakeApi.updateTask(id, body);
 			this.tasks = updatedTasks;
+	
 			if (this.selectedTask?.id === id) {
-				this.selectedTask = { ...this.selectedTask, ...body };
+				this.selectedTask = this.getTask(id);
 			}
 		});
 	}
+	
+	
 
 	setFilter(filter: ETaskFilter) {
 		this.filter = filter;
 	}
 
-	setSelectedTask(task: ITask | null) {
-		this.selectedTask = task;
+	setSelectedTask(id: number | null) {
+		this.selectedTask = id ? this.getTask(id) : null;
 	}
+	
 
 	getTask(id: number) {
 		return this.tasks.find((task) => task.id === id) || null;

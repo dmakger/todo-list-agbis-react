@@ -1,0 +1,16 @@
+.line {
+    background-color: var(--background-2);
+    border-radius: 100px;
+}
+
+// VIEW
+.horizontal {
+    min-width: 300px;
+    width: calc(100% - 60px);
+    height: 1px;
+    margin: 0 auto;
+}
+.vertical {
+    width: 1px;
+    height: 100%;
+}
