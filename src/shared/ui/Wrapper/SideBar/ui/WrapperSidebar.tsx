@@ -4,12 +4,14 @@ import { cls } from '@/shared/lib/classes.lib';
 import cl from './_WrapperSidebar.module.scss';
 
 interface WrapperSidebarProps {
+    isOpen?: boolean
     childrenPage: ReactNode
     childrenSidebar: ReactNode
     className?: string,
 }
 
 export const WrapperSidebar:FC<WrapperSidebarProps> = ({
+    isOpen = false,
     childrenPage,
     childrenSidebar,
     className
@@ -19,7 +21,7 @@ export const WrapperSidebar:FC<WrapperSidebarProps> = ({
             <div className={cl.page}>
                 {childrenPage}
             </div>
-            <div className={cl.sidebar}>
+            <div className={cls(isOpen ? cl.open : '', cl.sidebar)}>
                 {childrenSidebar}
             </div>
         </div>

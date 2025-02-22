@@ -1,0 +1,30 @@
+.select {
+    width: fit-content;
+    padding: 8px 30px 8px 12px;
+    font-size: 14px;
+    color: var(--foreground-1);
+    background-color: var(--background-2);
+    border: none;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: var(--background-3);
+    }
+}
+
+.select option {
+    background-color: var(--background-2);
+    color: var(--foreground-1);
+    padding: 5px;
+
+    &:hover {
+        background-color: var(--background-3);
+    }
+}
+
+/* Стилизация для Firefox */
+@-moz-document url-prefix() {
+    .select {
+        padding-right: 20px;
+    }
+}

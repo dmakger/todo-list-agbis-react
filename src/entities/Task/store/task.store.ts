@@ -49,8 +49,6 @@ class TaskStore {
 			}
 		});
 	}
-	
-	
 
 	setFilter(filter: ETaskFilter) {
 		this.filter = filter;

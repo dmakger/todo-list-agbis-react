@@ -60,7 +60,6 @@
   --negative-surface: var(--red-light-1);
   --negative-surface-sub: var(--red-light-1);
 
-
   // USE
   background-color: var(--background-1);
   color: var(--foreground-1);
@@ -203,6 +202,11 @@ span, p{
   font-size: inherit;
   font-weight: inherit;
   text-align: inherit;
+}
+
+select {
+  cursor: pointer;
+  outline: none;
 }
 
 @media (prefers-color-scheme: dark) {
