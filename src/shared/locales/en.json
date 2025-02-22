@@ -1,0 +1,21 @@
+{
+    "language": "EN",
+    "task": {
+        "create": {
+            "placeholder": "Add a task"
+        },
+        "detail": {
+            "title": "Task Details",
+            "form": {
+                "titlePlaceholder": "Title",
+                "descriptionPlaceholder": "Description"
+            }
+        },
+        "filter": {
+            "all": "All",
+            "completed": "Completed",
+            "uncompleted": "Uncompleted"
+        }
+    }
+}
+  

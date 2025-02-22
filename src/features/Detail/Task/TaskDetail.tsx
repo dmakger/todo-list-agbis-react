@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { taskStore } from "@/entities/Task/store/task.store";
 import cl from './_TaskDetail.module.scss';
@@ -11,6 +12,10 @@ import { XMARK_WHITE } from "@/shared/data/icon/xmark.data.icon";
 
 
 export const TaskDetail = observer(() => {
+	// TRANSLATE
+	const { t } = useTranslation();
+	
+	// RTK
 	const task = taskStore.selectedTask;
 
 	// STATE
@@ -47,7 +52,7 @@ export const TaskDetail = observer(() => {
 			<div className={cl.header}>
 				<Input.Checkbox checked={task.completed} onChange={handleToggleCompletion} />
 				<Line view="vertical" width={3} className={cl.line} />
-				<h2 className={cl.headerTitle}>Детали задачи</h2>
+				<h2 className={cl.headerTitle}>{t("task.detail.title")}</h2>
 				<div className={cl.right}>
 					<Line view="vertical" width={2} className={cl.line} />
 					<Button
@@ -64,7 +69,7 @@ export const TaskDetail = observer(() => {
 				<Input.Text
 					variant={"text"}
 					value={isEmpty ? '' : task.title}
-					placeholder={"Название"}
+					placeholder={t("task.detail.form.titlePlaceholder")}
 					onChange={handleTitleChange}
 					required={true}
 					className={cl.title}
@@ -72,7 +77,7 @@ export const TaskDetail = observer(() => {
 				<Input.Text
 					variant={"textarea"}
 					value={task.description ?? ''}
-					placeholder={"Описание"}
+					placeholder={t("task.detail.form.descriptionPlaceholder")}
 					onChange={handleDescriptionChange}
 					className={cl.description}
 				/>

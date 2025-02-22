@@ -1,0 +1,21 @@
+{
+    "language": "RU",
+    "task": {
+        "create": {
+            "placeholder": "Добавить задачу"
+        },
+        "detail": {
+            "title": "Детали задачи",
+            "form": {
+                "titlePlaceholder": "Название",
+                "descriptionPlaceholder": "Описание"
+            }
+        },
+        "filter": {
+            "all": "Все",
+            "completed": "Завершённые",
+            "uncompleted": "Незавершённые"
+        }
+    }
+}
+  

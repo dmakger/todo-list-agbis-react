@@ -1,0 +1,14 @@
+.layout {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .languageButton {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+    }    
+}

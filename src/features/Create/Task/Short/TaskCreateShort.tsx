@@ -1,5 +1,6 @@
 import { FC, FormEvent, useRef } from "react"
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 import { cls } from '@/shared/lib/classes.lib';
 import cl from './_TaskCreateShort.module.scss';
@@ -17,6 +18,9 @@ interface TaskCreateShortProps{
 }
 
 export const TaskCreateShort:FC<TaskCreateShortProps> = observer(({className}) => {
+    // TRANSLATE
+    const { t } = useTranslation();
+
     // REF
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -34,7 +38,7 @@ export const TaskCreateShort:FC<TaskCreateShortProps> = observer(({className}) =
 
     return (
         <form ref={formRef} onSubmit={handleOnSubmit} className={cls(cl.wrapper, className)}>
-            <Input.Text name={'titleTask'} placeholder="Добавить задачу" />
+            <Input.Text name={'titleTask'} placeholder={t("task.create.placeholder")} />
             <Button
                 variant={ButtonVariant.ToFill}
                 size={ButtonSize.Small}
