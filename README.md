@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+# Todo List (MobX, React, TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## 📌 Описание
+**Todo List** — это веб-приложение для управления задачами.  
+Проект построен на **React**, использует **TypeScript**, **MobX** для управления состоянием и поддерживает **локализацию** (русский/английский).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🚀 Функциональность
+✔️ Добавление задач  
+✔️ Редактирование задач (название, описание)  
+✔️ Удаление задач  
+✔️ Отметка задачи как выполненной  
+✔️ Фильтрация задач (все, завершённые, незавершённые)  
+✔️ Переключение языка (RU/EN)  
+✔️ Адаптивный дизайн (без горизонтального скролла от 320px)  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📂 Архитектура проекта
+Проект организован по **Feature-Sliced Design**:  
+```sh
+src/  
+├── app/ # Инициализация приложения  
+│ ├── providers/ # Провайдеры (MobX, роутинг)  
+│ └── routes/ # Маршрутизация  
+├── entities/ # Бизнес-логика и сущности (Task)  
+├── features/ # Фичи (CRUD, фильтрация)  
+├── shared/ # Общие компоненты, UI, утилиты  
+├── widgets/ # Виджеты (Layout, Sidebar)  
+├── pages/ # Страницы приложения  
+└── main.tsx # Точка входа  
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## 🛠️ Установка и запуск
+### 1️⃣ Установка зависимостей
+```sh
+npm install
 ```
+### 2️⃣ Запуск проекта
+```sh
+npm run dev
+```
+Приложение запустится на localhost:5173.
+
+## 🌍 Локализация
+Проект поддерживает русский и английский язык.  
+Переключение осуществляется через `LayoutWithLanguage`.  
+
+## 📝 Технологии
+* React + TypeScript
+* MobX (стейт-менеджмент)
+* SCSS (модули)
+* i18n (локализация)
+* Vite (сборка)
+
+## 📦 Деплой
+Проект развернут на Vercel: [🔗 Ссылка на деплой](https://todo-list-agbis-react-jcl9.vercel.app/)  
+
+## 🏗️ Разработка
+Проект разработан в рамках тестового задания для компании АГБИС  
+[Ссылка на задание](https://gist.github.com/ToLive/f50c0c76704a76933e56b7840ce7a5ef)
