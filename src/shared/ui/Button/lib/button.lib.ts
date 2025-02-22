@@ -8,5 +8,5 @@ export const getImageSizeBySize = (size: ButtonSize) => {
         return ButtonImageSize.Medium
     if (size === ButtonSize.Small)
         return ButtonImageSize.Small
-    return ButtonImageSize.Default
+    return ButtonImageSize.Medium
 }

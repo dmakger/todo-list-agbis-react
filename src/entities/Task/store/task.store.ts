@@ -29,7 +29,15 @@ class TaskStore {
 	}
 
 	toggleTaskCompletion(id: number, checked?: boolean) {
-		this.tasks = fakeApi.updateTask(id, { completed: checked ?? !this.getTask(id)?.completed });
+		const completed = checked ?? !this.getTask(id)?.completed
+		this.tasks = fakeApi.updateTask(id, { completed });
+
+		if (this.selectedTask && this.selectedTask.id === id) {
+            runInAction(() => {
+                taskStore.selectedTask = { ...this.selectedTask!, completed };
+            });
+        }
+
 	}
 
 	deleteTask(id: number) {
@@ -76,3 +84,4 @@ class TaskStore {
 }
 
 export const taskStore = new TaskStore();
+export type TTaskStore = typeof taskStore;

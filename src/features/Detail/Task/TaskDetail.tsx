@@ -9,6 +9,7 @@ import { Line } from "@/shared/ui/Line/Line";
 import { Button, ButtonVariant } from "@/shared/ui/Button";
 import { ButtonSize, ButtonColor } from "@/shared/ui/Button/data/button.data";
 import { XMARK_WHITE } from "@/shared/data/icon/xmark.data.icon";
+import { InputCheckboxProps } from "@/shared/ui/Input/ui/Checkbox/ui/InputCheckbox";
 
 
 export const TaskDetail = observer(() => {
@@ -39,8 +40,8 @@ export const TaskDetail = observer(() => {
 		taskStore.updateTask(task.id, { description: value });
 	};
 
-	const handleToggleCompletion = () => {
-		taskStore.toggleTaskCompletion(task.id);
+	const handleToggleCompletion: InputCheckboxProps['onChange'] = (_, checked) => {
+		taskStore.toggleTaskCompletion(task.id, checked);
 	};
 
 	const handleOnClose = () => {

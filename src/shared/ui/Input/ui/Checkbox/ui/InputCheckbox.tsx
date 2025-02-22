@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 
 import cl from './_InputCheckbox.module.scss';
 
-interface InputCheckboxProps {
+export interface InputCheckboxProps {
     title?: string;
     checked?: boolean;
     onClick?: (event: React.MouseEvent<HTMLLabelElement>) => void;
